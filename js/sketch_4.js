@@ -13,8 +13,10 @@ function mousePressed(){
 
 function setup() {
   createCanvas(256, 256);
+
   colorMode(HSB);
   angleMode(DEGREES);
+  
   mic = new p5.AudioIn();
 
   fft = new p5.FFT(0.9, 64);
