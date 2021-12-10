@@ -17,6 +17,7 @@ function setup(){
     createCanvas(600, 600);
     angleMode(DEGREES);
     rectMode(CENTER);
+    colorMode(HSB);
 
 
     video = createCapture(VIDEO);
@@ -28,53 +29,59 @@ function setup(){
     fft.setInput(mic);
     mic.start();
 
-
+    // background(0, [0.9]);
 }
 function draw(){
-    background(0);
-    // image(video,-100,0, 800, 600);
-    var gridSize = 40;
+ background('rgba(0,0,0, 0.2)');    
+ // image(video,-100,0, 800, 600);
+    var gridSize = 20;
 
     video.loadPixels();
     for (let y=0; y<video.height; y+=gridSize) {
         for (let x=0; x<video.width; x+=gridSize) {
 
             var index = (y * video.width + x) * 4;
-            // var indexBlue = (y * video.width + x) * 5;
-            // var blue = video.pixels[indexBlue];
+            var indexBlue = (y * video.width + x) * 5;
+            var blue = video.pixels[indexBlue];
             var red = video.pixels[index];
             // let diameter = map(red, 0, 255, gridSize, 1)
             let angle = map(red, 0, 255, 360, 0)
             // let RectWidth = map(blue, 0, 255, 1, 15)
+            let Hue = map(blue, 0, 255, 0, 100)
 
 
-            fill(255);
-            noStroke();
+            // fill(255);
+            // noStroke();
+            noFill();
+            strokeWeight(1);
+            stroke(Hue*3+50, 50, 100);
             push();
-            translate(x + gridSize/2, y + gridSize/2);
-            rotate(angle);
-            rect(0, 0, gridSize, 2);
+            translate(x + gridSize/3, y + gridSize/2);
+            rotate(angle*2);
+            rect(0, 0, gridSize*3, gridSize);
             pop();
+
 
             
             
         }
     }
-    // var spectrum = fft.analyze();
-    // let sumHigh = 0;
-    // let sumMid = 0;
-    // let sumLow = 0;
+    //TEXT
+    var customText = $("#textInput").val();
 
-    // for (var i = 0; 0 < i < 85; i++){
-    //     sumLow += spectrum[i];
-    // }
-    // for (var i = 0; 86 < i < 170; i++){
-    //     sumMid += spectrum[i];
-    // }
-    // for (var i = 0; 171 < i < 256; i++){
-    //     sumHigh += spectrum[i];
-    // }
+    if ($("#textInput").val() == ""){
+        customText = ("I made this with my body and my voice")
+    }
 
+    console.log(customText);
+
+    fill(0, 0, 100);
+    textSize(70);
+    textLeading(70);
+    textStyle(BOLDITALIC);
+    text(customText, 300, 300, 550);
+
+    //MIC CIRCLES
     noFill();
     stroke(255, 100, 255);
     strokeWeight(2)
@@ -83,11 +90,16 @@ function draw(){
     // circle(300, 300, 50 + sumLow);
     // circle(300, 300, 100 + sumMid);
     // circle(300, 300, 150 + sumHigh);
-    circle(300, 300, 50 + micLevel*900);
-    circle(300, 300, 100 + micLevel*900);
-    circle(300, 300, 150 + micLevel*900);
+    // circle(300, 300, 50 + micLevel*900);
+    // circle(300, 300, 100 + micLevel*900);
+    // circle(300, 300, 150 + micLevel*900);
+
+    // var circleA = [];
 
     // console.log(micLevel);
+    // if (micLevel > 0.05){
+        
+    // }
 
 }
 function mousePressed(){
