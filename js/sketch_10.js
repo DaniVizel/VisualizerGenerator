@@ -22,6 +22,7 @@ $('.slider').on('change', function() {
 });
 
 var t = 0;
+var sizeCha = 0;
 let video;
 let mic;
 
@@ -44,7 +45,8 @@ function setup(){
 }
 function draw(){
     // image(video, 0, 0);
-
+    sizeCha = sizeCha + 1;
+    console.log(sizeCha);
 t++;
 frameRate(24);
 
@@ -85,8 +87,6 @@ text(customText, 300, 380, 550);
 
             let angle = map(red, 0, 255, 360, 0);
             let Hue = map(blue, 0, 255, 0, 100);
-
-            
             
             
             noFill();
@@ -99,7 +99,6 @@ text(customText, 300, 380, 550);
 
             pop();
 
-
             
             
         }
@@ -109,79 +108,49 @@ text(customText, 300, 380, 550);
     //MIC CIRCLES
     var micLevel = mic.getLevel();
 
-if(micLevel > 0.03){
-    createCircle(1); 
-    console.log("made a circle with my voice")
-}
+    if(micLevel > 0.04){
+        createCircle(1); 
+    }
+    
 
     for(var i=0; i<circleArray.length; i++){
         noFill();
-        stroke("rgb(26, 41, 107,)");
+        stroke("rgba(255,255,255,"+ circleArray[i].a - circleArray[i].changea +"");
         strokeWeight(1+ micLevel*100);
-        circle(circleArray[i].x, circleArray[i].y, 20 + 600*micLevel);
-        circle(circleArray[i].x, circleArray[i].y, 50 + 600*micLevel);
 
-        console.log("circle drawn");
+        circle(circleArray[i].x, circleArray[i].y, circleArray[i].size + sizeCha);
+        circle(circleArray[i].x, circleArray[i].y, circleArray[i].size + 30 + sizeCha);
     }
-    // var updateCircle = 20;
-    // for (var i=0; i< 200; i++){
-    //     updateCircle = updateCircle + 1;
-    // }
+    if (circleArray.length > 10){
+        circleArray.splice(0, 1);
 
-
-    // for(var i=0; i<circleArray.length; i++){
-    //     noFill();
-    //     stroke(0);
-    //     strokeWeight(5);
-    //     circle(circleArray[i].x, circleArray[i].y, 20);
-    //     console.log("circle drawn");
-
-    // }
-    // var circleSize;
-    // for(var i=0; i< 300; i++){
-    //     circleSize = circleSize + 1;
-    // }
-
-    //FAST RANDOM BLACK CIRCLES
-    // noFill();
-    // stroke(0);
-    // strokeWeight(micLevel*500);
-    // console.log(micLevel*100);
-    // var circleXPos = random(600);
-    // var circleYPos = random(600);
-
-    // circle(circleXPos, circleYPos, 50 + micLevel*900);
-    // if(micLevel > 0.5){
-    //     circle(circleXPos, circleYPos, 100 + micLevel*900);
-    //     circle(circleXPos, circleYPos, 150 + micLevel*900);
-
-    // }
-    // if(micLevel > 1){
-    //     circle(circleXPos, circleYPos, 200 + micLevel*900);
-
-    // }
+    }
    
 }
+
 function mousePressed(){
     getAudioContext().resume();
 
     loadPixels();
     colourToMatch = get(mouseX, mouseY);
-
 }
+
 var circleArray = [];
 
-    function createCircle(num){
-        for(var i=0; i<num; i++){
-            circleArray.push ({
-                "x": random(600),
-                "y": random(600),
-            })
-        }
+function createCircle(num){
+    for(var i=0; i<num; i++){
+        circleArray.push ({
+            "x": random(600),
+            "y": random(600),
+            "a": 1,
+            "changea": 0.1,
+            "size": 0,
+        })
     }
-    // setInterval(function(){ 
-    //     createCircle(1); 
-    //     console.log("circle made");
-    // }, 2000);
+}
+// setInterval(function(){ 
+//     createCircle(1); 
+//     console.log("circle made");
+// }, 2000);
     
 
