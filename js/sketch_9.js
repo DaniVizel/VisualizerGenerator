@@ -10,6 +10,15 @@
 //CP2: Reading Video Pixels – Webcam Tracking in p5.js
 //https://www.youtube.com/watch?v=VYg-YdGpW1o&ab_channel=JeffThompson
 
+// https://p5js.org/reference/#/p5/saveCanvas
+
+var sliderVal = 5;
+$('.slider').on('change', function() {
+    sliderVal = $(this).val();
+    console.log(sliderVal);
+});
+
+var t = 0;
 let video;
 let mic;
 
@@ -32,10 +41,11 @@ function setup(){
     // background(0, [0.9]);
 }
 function draw(){
+t++;
 frameRate(24);
 
 $(".exportButton").click(function(){
-    saveCanvas('myCanvas', 'pdf')
+    saveCanvas('myCanvas', 'png')
 })
 
  background('rgba(26, 41, 107, 0.4)');    
@@ -58,6 +68,7 @@ text(customText, 300, 380, 550);
 
 
     var gridSize = 20;
+    var coEf = 100;
 
     video.loadPixels();
     for (let y=0; y<video.height; y+=gridSize) {
@@ -72,16 +83,17 @@ text(customText, 300, 380, 550);
             // let RectWidth = map(blue, 0, 255, 1, 15)
             let Hue = map(blue, 0, 255, 0, 100)
 
-
+            
+            
             // fill(255);
             // noStroke();
             noFill();
             strokeWeight(1);
-            stroke(Hue*3+50, 50, 100);
+            stroke(Hue * sliderVal, 50, 100);
             push();
             translate(x + gridSize/3, y + gridSize/2);
-            rotate(angle*2);
-            rect(0 + random(10), 0 + random(10), gridSize*3, gridSize);
+            rotate(angle + cos(t*2)*coEf);
+            rect(0 , 0 , gridSize*3, gridSize);
             // rect(0, 0, gridSize, 4);
 
             pop();
