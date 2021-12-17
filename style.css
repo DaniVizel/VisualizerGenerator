@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Barlow, sans-serif;
+
+}
+body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: rgba(26, 41, 107, 0.2);
+    overflow: hidden;
+}
+.container-left {
+    /* background-color: yellow; */
+    margin-top: 30px;
+    margin-left: 3vw;
+    margin-right: 30px;
+}
+.container-right{
+    /* background-color: pink; */
+}
+#sketch-holder {
+    margin: 30px;
+
+}
+#colPicker {
+    display: inline-block;
+    margin-left: 20px;
+}
+input {
+    margin-bottom: 15px;
+    background-color: white;
+    border-width: 0;
+    border-radius: 5px;
+}
+#textInput {
+    max-width: 350px;
+    width: 75%
+}
+.slider {
+    appearance: none;
+    background: white;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 12px; /* Set a specific slider handle width */
+    height: 12px; /* Slider handle height */
+    background: rgb(26, 41, 107);
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 50%;
+  }
+button {
+    padding: 5px 10px;
+    border-style: none;
+    border-radius: 5px;
+    background-color: white;
+}
+ h1, h2, h3, h4, h5, h6, p {
+    color: rgb(26, 41, 107);
+    margin-bottom: 20px;
+ }
+h1 {
+    font-size: 60px;
+    line-height: 1em;
+}
+h2 {
+    font-size: 16px;
+    font-weight: 400;
+
+}
+@media (max-width:1055px) {
+    body {
+        display: block;
+        overflow-y: scroll;
+    }
+    #sketch-holder {
+        margin-left: 50%;
+        transform: translateX(-350px);
+    }
+}

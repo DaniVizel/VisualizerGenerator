@@ -6,19 +6,42 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet"> 
 
     <title>Generator</title>
 </head>
 <body>
-
-    <form>
-        <label>Custom text:</label>
+    <div class=container-left>
+        <h1>Embodied Art</h1>
+        <h2>Experiment with moving your body and using your voice to change the image below. <br><br>If you'd like to preserve your work, hit export whenever you're ready!</h2>
+        <form>
+        <label>Text</label>
         <input type="text" id="textInput" value="I made this with my body and my voice"><br>
-    </form>
-    <!-- <div class="slidecontainer">
-        <input type="range" min="0.5" max="10" value="5" class="slider" id="myRange">
-      </div>
-    <button class="exportButton" type="button">Export</button> -->
+        </form>
+        <div class="slidecontainer">
+            <label>Colour Palette </label>
+            <input type="range" min="0.5" max="10" value="5" class="slider" id="colorSlider"><br>
+
+            <label>Text Size </label>
+            <input type="range" min="5" max="300" value="70" class="slider" id="TextSizeSlider"><br>
+       
+            <label>Text Position </label>
+            <input type="range" min="0" max="600" value="300" class="slider" id="TextPositionSlider"><br>
+           
+            <label>Background Colour </label>
+            <div id="colPicker"></div>
+        </div>
+
+        <button class="exportButton" type="button">Export</button>
+    </div>
+    <div class=container-right>
+        <div id="sketch-holder"></div>
+    </div>
+    
+
+
+
+
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
@@ -26,7 +49,9 @@
     <script src="js/p5.js"></script>
     <script src="js/p5.sound.js"></script>
 
-    <script src="js/sketch_11.js"></script>
+    <script src="js/sketch_12.js"></script>
 </body>
 </html>
+<!-- https://www.w3schools.com/howto/howto_js_rangeslider.asp -->
+<!-- https://github.com/processing/p5.js/wiki/Positioning-your-canvas -->
 <!-- https://www.w3schools.com/howto/howto_js_rangeslider.asp -->
