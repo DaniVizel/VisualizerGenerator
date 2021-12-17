@@ -14,6 +14,10 @@
 
 //https://stackoverflow.com/questions/678434/how-to-retrieve-a-value-from-input-using-jquery
 
+// https://p5js.org/reference/#/p5/createColorPicker
+
+// https://github.com/processing/p5.js/wiki/Positioning-your-canvas
+
 var t = 0;
 let video;
 let mic;
